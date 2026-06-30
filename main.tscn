@@ -34,10 +34,14 @@ size = Vector3(0.2, 0.2, 0.2)
 [node name="Node3D" type="Node3D" unique_id=1480538037]
 script = ExtResource("1_ig7tw")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=481770851]
-transform = Transform3D(0.82420206, -0.32013848, 0.4671213, 0, 0.82487154, 0.56532025, -0.56629586, -0.4659381, 0.67986083, 1.3222921, 1.6437024, 1.1879411)
+[node name="CameraHandler" type="Marker3D" parent="." unique_id=2053058237]
+transform = Transform3D(0.82420206, -0.3201385, 0.46712133, 0, 0.82487154, 0.56532025, -0.56629586, -0.46593806, 0.67986083, 1.3222921, 1.6437024, 1.1879411)
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=107618396]
+[node name="Camera3D" type="Camera3D" parent="CameraHandler" unique_id=481770851]
+transform = Transform3D(1, 5.9604645e-08, 2.9802322e-08, 0, 1, -2.9802322e-08, 0, 0, 1.0000001, 0, 0, 0)
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraHandler/Camera3D" unique_id=107618396]
 target_position = Vector3(0, 0, -10)
 collide_with_areas = true
 

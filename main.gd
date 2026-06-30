@@ -1,7 +1,7 @@
 extends Node3D
 
-@onready var camera: Camera3D = $Camera3D
-@onready var ray_cast: RayCast3D = $Camera3D/RayCast3D
+@onready var camera: Camera3D = $CameraHandler/Camera3D
+@onready var ray_cast: RayCast3D = $CameraHandler/Camera3D/RayCast3D
 
 var selected_button : AreaButton
 var selected_slider : AreaSlider
@@ -19,6 +19,10 @@ func _physics_process(delta: float) -> void:
 	var project: Vector3 = camera.project_position(screen_pos, 0.5)
 	var direction: Vector3 = camera.global_position.direction_to(project)
 	if grabed_slider:
+		#var direction_to_slider: Vector3 = camera.global_position.direction_to(selected_slider.get_parent().global_position)
+		#var diff = direction_to_slider.signed_angle_to(direction, Vector3.UP)
+		#var need_direction = direction.rotated(Vector3.UP, -diff)
+		
 		var global_pos : Vector3 = camera.global_position + direction * camera.global_position.distance_to(selected_slider.get_parent().global_position)
 		selected_slider.move_to( selected_slider.path.to_local(global_pos) )
 		#$sadf.global_position = camera.global_position + direction * camera.global_position.distance_to(selected_slider.get_parent().global_position)
@@ -67,3 +71,5 @@ func _input(event: InputEvent) -> void:
 			print("This Will Work")
 	elif event.is_action_pressed("cheat_2"):
 		$Node3D.untoggle_all_buttons()
+	elif event.is_action_pressed("cheat_3"):
+		print($Node3D2/Area3D.get_value())
